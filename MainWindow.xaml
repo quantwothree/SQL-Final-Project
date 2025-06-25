@@ -1,0 +1,77 @@
+﻿<Window x:Class="SQL_Final_Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Employee Management System" Height="800" Width="1200"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#2C3E50" Padding="20">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="pack://application:,,,/Resources/logo.png" Width="50" Height="50" Margin="0,0,15,0"/>
+                <StackPanel>
+                    <TextBlock Text="Incredibly Obvious Technology " FontSize="24" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="Employee Management System" FontSize="14" Foreground="#BDC3C7"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Panel -->
+            <Border Grid.Column="0" Background="White" Margin="0,0,10,0" Padding="10">
+                <StackPanel>
+
+                    <Button Content="Show All Employees" Name="btnShowAll" Click="BtnShowAll_Click" Margin="0,0,0,10" Height="30"/>
+
+                    <!--<TextBlock Text="Search by Name:" />
+                    <TextBox Name="txtSearchName" Margin="0,5" Height="25"/>
+                    <Button Content="Search" Name="btnSearchByName" Click="BtnSearchByName_Click" Margin="0,0,0,10" Height="30"/>
+
+                    <TextBlock Text="Search by Branch Number:"/>
+                    <TextBox Name="txtBranchNumber" Margin="0,5" Height="25"/>
+                    <Button Content="Search" Name="btnSearchByBranch" Click="BtnSearchByBranch_Click" Margin="0,0,0,10" Height="30"/>
+
+                    <TextBlock Text="Filter by Salary"/>
+                    <TextBox Name="txtSalaryFilter" Margin="0,5" Height="25"/>
+                    <Button Content="Filter" Name="btnSearchBySalary" Click="BtnSearchBySalary_Click" Margin="0,0,0,10" Height="30"/>
+
+                    <Button Content="Add New Employee" Name="btnAddEmployee" Click="BtnAddEmployee_Click" Background="#3498DB" Foreground="White" Margin="0,0,0,10" Height="35"/>
+                    <Button Content="Delete Employee" Name="btnDeleteEmployee" Click="BtnDeleteEmployee_Click" Background="#E74C3C" Foreground="White" Margin="0,0,0,10" Height="35"/>
+                    <Button Content="View Total Sales" Name="btnViewSales" Click="BtnViewSales_Click" Background="#3498DB" Foreground="White" Margin="0,0,0,10" Height="35"/>
+                    <Button Content="Update Salary" Name="btnUpdateSalary" Click="BtnUpdateSalary_Click" Background="#3498DB" Foreground="White" Height="35"/>-->
+
+                </StackPanel>
+            </Border>
+
+
+            <!-- Right Panel - Data Grid -->
+            <Border Grid.Column="1" Background="White">
+                <DataGrid Name="DataGridEmployees" AutoGenerateColumns="False" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                        <DataGridTextColumn Header="First Name" Binding="{Binding GivenName}" Width="100"/>
+                        <DataGridTextColumn Header="Last Name" Binding="{Binding FamilyName}" Width="100"/>
+                        <DataGridTextColumn Header="Date of Birth" Binding="{Binding DateOfBirth, StringFormat=yyyy-MM-dd}" Width="100"/>
+                        <DataGridTextColumn Header="Gender" Binding="{Binding GenderIdentity}" Width="60"/>
+                        <DataGridTextColumn Header="Salary" Binding="{Binding GrossSalary, StringFormat=C}" Width="100"/>
+                        <DataGridTextColumn Header="Branch" Binding="{Binding BranchId}" Width="100"/>
+                        <DataGridTextColumn Header="Supervisor" Binding="{Binding SupervisorId}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </Grid>
+
+    </Grid>
+</Window>
