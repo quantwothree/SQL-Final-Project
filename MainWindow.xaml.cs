@@ -40,7 +40,23 @@ namespace SQL_Final_Project
         {
             string query = "SELECT * FROM employees;";
             MySqlCommand command = new MySqlCommand(query,connection);
-            employeeManager.LoadEmployees(command);
+            employeeManager.LoadEmployees(command); // Pass command to LoadEmployees to execute via ExecuteReader() 
+        }
+
+        private void BtnSearchByName_Click(object sender, RoutedEventArgs e)
+        {
+            string userSearch = txtSearchName.Text;
+            if (string.IsNullOrEmpty(userSearch)) // check if nothing is entered
+            {
+                MessageBox.Show("Please enter a name:");
+            }
+            else
+            {
+                string query = "SELECT * FROM employees WHERE family_name LIKE @userSearch OR given_name LIKE @userSearch";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@userSearch", userSearch); // To pass userSearch ( the string variable) into @userSearch in the query
+                employeeManager.LoadEmployees(command);
+            }
         }
 
 
