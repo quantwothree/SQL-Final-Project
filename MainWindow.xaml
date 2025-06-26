@@ -14,7 +14,7 @@
         <!-- Header -->
         <Border Grid.Row="0" Background="#2C3E50" Padding="20">
             <StackPanel Orientation="Horizontal">
-                <Image Source="pack://application:,,,/Resources/logo.png" Width="50" Height="50" Margin="0,0,15,0"/>
+                <Image Source="/Images/obvious.jpg" Width="163" Height="95" Margin="0,0,15,0"/>
                 <StackPanel>
                     <TextBlock Text="Incredibly Obvious Technology " FontSize="24" FontWeight="Bold" Foreground="White"/>
                     <TextBlock Text="Employee Management System" FontSize="14" Foreground="#BDC3C7"/>
@@ -50,7 +50,7 @@
 
                         <Button Content="Add New Employee" Name="btnAddEmployee" Click="BtnAddEmployee_Click" Background="Green" Foreground="White" Margin="0,0,0,10" Height="35"/>
 
-                         <!-- New Employee -->
+                        <!-- New Employee -->
                         <TextBlock Text="Employee ID:"/>
                         <TextBox Name="txtEmployeeId" Margin="0,5" Height="25"/>
 
@@ -65,9 +65,10 @@
 
                         <TextBlock Text="Gender Identity:"/>
                         <ComboBox Name="GenderIdentity" Margin="0,5" Height="25">
-                            <ComboBoxItem Content="Female"/> 
+                            <ComboBoxItem Content="Female"/>
                             <ComboBoxItem Content="Male"/>
-                            <ComboBoxItem Content="Non-binary"/>  <!-- for O gender type in employees table -->
+                            <ComboBoxItem Content="Non-binary"/>
+                            <!-- for O gender type in employees table -->
                         </ComboBox>
 
                         <TextBlock Text="Salary:"/>
@@ -91,7 +92,8 @@
 
             <!-- Right Panel -->
             <Border Grid.Column="1" Background="White">
-               <DataGrid Name="DataGridEmployees" AutoGenerateColumns="False" SelectionMode="Single"> <!-- Allow user to choose only 1 thing in UI-->
+                <DataGrid Name="DataGridEmployees" AutoGenerateColumns="False" SelectionMode="Single">
+                    <!-- Allow user to choose only 1 thing in UI-->
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                         <DataGridTextColumn Header="First Name" Binding="{Binding GivenName}" Width="100"/>
@@ -102,7 +104,7 @@
                         <DataGridTextColumn Header="Branch" Binding="{Binding BranchId}" Width="100"/>
                         <DataGridTextColumn Header="Supervisor" Binding="{Binding SupervisorId}" Width="120"/>
                     </DataGrid.Columns>
-                </DataGrid> 
+                </DataGrid>
             </Border>
         </Grid>
 
