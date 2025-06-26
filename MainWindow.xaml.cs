@@ -80,6 +80,33 @@ namespace SQL_Final_Project
 
 
         }
+
+        private void BtnSearchBySalary_Click(object sender, RoutedEventArgs e)
+        {
+            string userSearch = txtSalaryFilter.Text;
+            bool checkIfUserSearchIsValid = int.TryParse(userSearch, out int intUserSearch);
+            if (checkIfUserSearchIsValid == false)
+            {
+                MessageBox.Show("Invalid, please enter a number: ");
+            }
+            else if (string.IsNullOrEmpty(userSearch))
+            {
+                MessageBox.Show("Please enter a salary: ");
+            }
+            else if (intUserSearch < 0)
+            {
+                MessageBox.Show("Salary must be greater than 0: ");
+            }
+            else
+            {
+                string query = "SELECT * FROM employees WHERE gross_salary > @userSearch";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@userSearch", intUserSearch);
+                employeeManager.LoadEmployees(command);
+            }
+
+
+        }
     }
 }
 

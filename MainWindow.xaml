@@ -43,11 +43,11 @@
                     <TextBox Name="txtBranchNumber" Margin="0,5" Height="25"/>
                     <Button Content="Search" Name="btnSearchByBranch" Click="BtnSearchByBranch_Click" Margin="0,0,0,10" Height="30"/>
 
-                    <!--<TextBlock Text="Filter by Salary"/>
+                    <TextBlock Text="Filter by Salary"/>
                     <TextBox Name="txtSalaryFilter" Margin="0,5" Height="25"/>
                     <Button Content="Filter" Name="btnSearchBySalary" Click="BtnSearchBySalary_Click" Margin="0,0,0,10" Height="30"/>
 
-                    <Button Content="Add New Employee" Name="btnAddEmployee" Click="BtnAddEmployee_Click" Background="#3498DB" Foreground="White" Margin="0,0,0,10" Height="35"/>
+                    <!--<Button Content="Add New Employee" Name="btnAddEmployee" Click="BtnAddEmployee_Click" Background="#3498DB" Foreground="White" Margin="0,0,0,10" Height="35"/>
                     <Button Content="Delete Employee" Name="btnDeleteEmployee" Click="BtnDeleteEmployee_Click" Background="#E74C3C" Foreground="White" Margin="0,0,0,10" Height="35"/>
                     <Button Content="View Total Sales" Name="btnViewSales" Click="BtnViewSales_Click" Background="#3498DB" Foreground="White" Margin="0,0,0,10" Height="35"/>
                     <Button Content="Update Salary" Name="btnUpdateSalary" Click="BtnUpdateSalary_Click" Background="#3498DB" Foreground="White" Height="35"/>-->
