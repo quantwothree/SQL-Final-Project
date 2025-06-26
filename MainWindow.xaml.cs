@@ -273,6 +273,40 @@ namespace SQL_Final_Project
                 MessageBox.Show("No sales record found");
             }
         }
+
+        private void BtnUpdateSalary_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedId = 0;
+            if (DataGridEmployees.SelectedItem == null)
+            {
+                MessageBox.Show("No employee selected");
+                return;
+            }
+            else
+            {
+                var selectedEmployee = (Employee)DataGridEmployees.SelectedItem;
+                selectedId = selectedEmployee.Id;
+            }
+
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Enter new salary: ");
+            if (string.IsNullOrEmpty(input))
+            {
+                MessageBox.Show("Please enter a new salary: ");
+                return;
+            }
+            else if (int.TryParse(input, out int newSalary))
+            {
+                string query = "UPDATE employees SET gross_salary = @salary WHERE id = @id";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@salary", newSalary);
+                command.Parameters.AddWithValue("@id", selectedId);
+                command.ExecuteNonQuery(); // This is an action, returns how many rows in database affected 
+                MessageBox.Show("Salary updated");
+            }
+
+
+
+        }
     }
 }
 
