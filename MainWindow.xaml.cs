@@ -40,7 +40,7 @@ namespace SQL_Final_Project
         private void BtnShowAll_Click(object sender, RoutedEventArgs e)
         {
             string query = "SELECT * FROM employees;";
-            MySqlCommand command = new MySqlCommand(query,connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
             employeeManager.LoadEmployees(command); // Pass command to LoadEmployees to execute via ExecuteReader() 
         }
 
@@ -64,7 +64,7 @@ namespace SQL_Final_Project
         {
             string userSearch = txtBranchNumber.Text;
             bool checkIfUserSearchIsValid = int.TryParse(userSearch, out int intUserSearch);
-            if (checkIfUserSearchIsValid == false) 
+            if (checkIfUserSearchIsValid == false)
             {
                 MessageBox.Show("Invalid branch number, please enter a number: ");
             }
@@ -76,7 +76,7 @@ namespace SQL_Final_Project
             {
                 string query = "SELECT * FROM employees WHERE branch_id = @userSearch";
                 MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@userSearch", intUserSearch); 
+                command.Parameters.AddWithValue("@userSearch", intUserSearch);
                 employeeManager.LoadEmployees(command);
             }
 
@@ -149,7 +149,7 @@ namespace SQL_Final_Project
             {
                 dob = DateOfBirth.SelectedDate.Value;
             }
-               
+
             //GENDER
             if (GenderIdentity.SelectedItem == null)
             {
@@ -199,7 +199,7 @@ namespace SQL_Final_Project
                 MessageBox.Show("Invalid supervisor ID, please enter a valid number: ");
                 return;
             }
-  
+
             DateTime createdAt = DateTime.Now;
 
             string query = @"INSERT INTO Employees (id, given_name, family_name, date_of_birth, gender_identity, gross_salary, branch_id, supervisor_id, created_at)
@@ -216,7 +216,7 @@ namespace SQL_Final_Project
             command.Parameters.AddWithValue("@created_at", DateTime.Now);
 
             employeeManager.LoadEmployees(command);
-            MessageBox.Show("Employee submitted"); 
+            MessageBox.Show("Employee submitted");
 
 
         }
@@ -239,8 +239,39 @@ namespace SQL_Final_Project
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@id", selectedId);
             employeeManager.LoadEmployees(command);
-            MessageBox.Show("Employee deleted!"); 
+            MessageBox.Show("Employee deleted!");
 
+        }
+
+        private void BtnViewSales_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedId = 0;
+            if (DataGridEmployees.SelectedItem == null)
+            {
+                MessageBox.Show("No employee selected");
+                return;
+            }
+            else
+            {
+                var selectedEmployee = (Employee)DataGridEmployees.SelectedItem;
+                selectedId = selectedEmployee.Id;
+            }
+
+            string query = "SELECT total_sales FROM working_with JOIN employees ON working_with.employee_id = employees.id WHERE employees.id = @id";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id", selectedId);
+           
+            object result = command.ExecuteScalar(); // Get a single value total_sales 
+
+            if (result != null && result != DBNull.Value) // Check if no null in C# and no null in SQL (the total_sales field)
+            {
+                int totalSales = Convert.ToInt32(result);
+                MessageBox.Show("Total sales of selected employee is " + totalSales);
+            }
+            else
+            {
+                MessageBox.Show("No sales record found");
+            }
         }
     }
 }
