@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Reflection;
 
 
 namespace SQL_Final_Project
@@ -95,7 +96,7 @@ namespace SQL_Final_Project
             }
             else if (intUserSearch < 0)
             {
-                MessageBox.Show("Salary must be greater than 0: ");
+                MessageBox.Show("Nobody works for free");
             }
             else
             {
@@ -104,6 +105,117 @@ namespace SQL_Final_Project
                 command.Parameters.AddWithValue("@userSearch", intUserSearch);
                 employeeManager.LoadEmployees(command);
             }
+
+
+        }
+
+        private void BtnAddEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+            DateTime dob = DateTime.MinValue;
+            string gender = string.Empty;
+
+            //ID
+            if (!int.TryParse(txtEmployeeId.Text, out int id))
+            {
+                MessageBox.Show("Invalid ID, please enter a valid number: ");
+                return;
+            }
+
+            //NAME
+            string givenName = txtGivenName.Text;
+            string familyName = txtFamilyName.Text;
+
+            if (string.IsNullOrWhiteSpace(givenName) || givenName.All(char.IsDigit))
+            {
+                MessageBox.Show("Please enter a valid given Name (not empty or all numbers): ");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(familyName) || familyName.All(char.IsDigit))
+            {
+                MessageBox.Show("Please enter a valid family Name (not empty or all numbers): ");
+                return;
+            }
+
+            //DOB
+            if (DateOfBirth.SelectedDate == null)
+            {
+                MessageBox.Show("Please select a valid Date of Birth.");
+                return;
+            }
+            else
+            {
+                dob = DateOfBirth.SelectedDate.Value;
+            }
+               
+            //GENDER
+            if (GenderIdentity.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a gender identity");
+                return;
+            }
+            else
+            {
+                string selectedGender = (GenderIdentity.SelectedItem as ComboBoxItem).Content.ToString();
+
+                switch (selectedGender)
+                {
+                    case "Female":
+                        gender = "F";
+                        break;
+                    case "Male":
+                        gender = "M";
+                        break;
+                    case "Non-binary":
+                        gender = "O";
+                        break;
+                }
+            }
+
+            //SALARY
+            if (!int.TryParse(txtSalary.Text, out int salary) || (string.IsNullOrEmpty(txtSalary.Text)))
+            {
+                MessageBox.Show("Invalid salary, please enter a valid number: ");
+                return;
+            }
+            else if (salary < 0)
+            {
+                MessageBox.Show("Nobody works for free");
+                return;
+            }
+
+            //BRANCH ID 
+            if (!int.TryParse(txtBranch.Text, out int branchId) || (string.IsNullOrEmpty(txtBranch.Text)))
+            {
+                MessageBox.Show("Invalid branch ID, please enter a valid number: ");
+                return;
+            }
+
+            //SUPERVISOR ID 
+            if (!int.TryParse(txtBranch.Text, out int supervisorId) || (string.IsNullOrEmpty(txtSupervisor.Text)))
+            {
+                MessageBox.Show("Invalid supervisor ID, please enter a valid number: ");
+                return;
+            }
+  
+            DateTime createdAt = DateTime.Now;
+
+            string query = @"INSERT INTO Employees (id, given_name, family_name, date_of_birth, gender_identity, gross_salary, branch_id, supervisor_id, created_at)
+                           VALUES (@id, @given_name, @family_name, @dob, @gender, @salary, @branch_id, @supervisor_id, @created_at)";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@given_name", givenName);
+            command.Parameters.AddWithValue("@family_name", familyName);
+            command.Parameters.AddWithValue("@dob", dob);
+            command.Parameters.AddWithValue("@gender", gender);
+            command.Parameters.AddWithValue("@salary", salary);
+            command.Parameters.AddWithValue("@branch_id", branchId);
+            command.Parameters.AddWithValue("@supervisor_id", supervisorId);
+            command.Parameters.AddWithValue("@created_at", DateTime.Now);
+
+            employeeManager.LoadEmployees(command);
+            MessageBox.Show("Employee submitted"); 
 
 
         }

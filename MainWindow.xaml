@@ -22,7 +22,7 @@
             </StackPanel>
         </Border>
 
-        <!-- Main Content -->
+        <!-- Main -->
         <Grid Grid.Row="1" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
@@ -31,34 +31,68 @@
 
             <!-- Left Panel -->
             <Border Grid.Column="0" Background="White" Margin="0,0,10,0" Padding="10">
-                <StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
 
-                    <Button Content="Show All Employees" Name="btnShowAll" Click="BtnShowAll_Click" Margin="0,0,0,10" Height="30"/>
+                        <Button Content="Show All Employees" Name="btnShowAll" Click="BtnShowAll_Click" Margin="0,0,0,10" Height="30"/>
 
-                    <TextBlock Text="Search by Name:" />
-                    <TextBox Name="txtSearchName" Margin="0,5" Height="25"/>
-                    <Button Content="Search" Name="btnSearchByName" Click="BtnSearchByName_Click" Margin="0,0,0,10" Height="30"/>
+                        <TextBlock Text="Search by Name:" />
+                        <TextBox Name="txtSearchName" Margin="0,5" Height="25"/>
+                        <Button Content="Search" Name="btnSearchByName" Click="BtnSearchByName_Click" Margin="0,0,0,10" Height="30"/>
 
-                    <TextBlock Text="Search by Branch Number:"/>
-                    <TextBox Name="txtBranchNumber" Margin="0,5" Height="25"/>
-                    <Button Content="Search" Name="btnSearchByBranch" Click="BtnSearchByBranch_Click" Margin="0,0,0,10" Height="30"/>
+                        <TextBlock Text="Search by Branch Number:"/>
+                        <TextBox Name="txtBranchNumber" Margin="0,5" Height="25"/>
+                        <Button Content="Search" Name="btnSearchByBranch" Click="BtnSearchByBranch_Click" Margin="0,0,0,10" Height="30"/>
 
-                    <TextBlock Text="Filter by Salary"/>
-                    <TextBox Name="txtSalaryFilter" Margin="0,5" Height="25"/>
-                    <Button Content="Filter" Name="btnSearchBySalary" Click="BtnSearchBySalary_Click" Margin="0,0,0,10" Height="30"/>
+                        <TextBlock Text="Filter by Salary"/>
+                        <TextBox Name="txtSalaryFilter" Margin="0,5" Height="25"/>
+                        <Button Content="Filter" Name="btnSearchBySalary" Click="BtnSearchBySalary_Click" Margin="0,0,0,10" Height="30"/>
 
-                    <!--<Button Content="Add New Employee" Name="btnAddEmployee" Click="BtnAddEmployee_Click" Background="#3498DB" Foreground="White" Margin="0,0,0,10" Height="35"/>
-                    <Button Content="Delete Employee" Name="btnDeleteEmployee" Click="BtnDeleteEmployee_Click" Background="#E74C3C" Foreground="White" Margin="0,0,0,10" Height="35"/>
-                    <Button Content="View Total Sales" Name="btnViewSales" Click="BtnViewSales_Click" Background="#3498DB" Foreground="White" Margin="0,0,0,10" Height="35"/>
-                    <Button Content="Update Salary" Name="btnUpdateSalary" Click="BtnUpdateSalary_Click" Background="#3498DB" Foreground="White" Height="35"/>-->
+                        <Button Content="Add New Employee" Name="btnAddEmployee" Click="BtnAddEmployee_Click" Background="Green" Foreground="White" Margin="0,0,0,10" Height="35"/>
 
-                </StackPanel>
+                         <!-- New Employee -->
+                        <TextBlock Text="Employee ID:"/>
+                        <TextBox Name="txtEmployeeId" Margin="0,5" Height="25"/>
+
+                        <TextBlock Text="Given Name:"/>
+                        <TextBox Name="txtGivenName" Margin="0,5" Height="25"/>
+
+                        <TextBlock Text="Family Name:"/>
+                        <TextBox Name="txtFamilyName" Margin="0,5" Height="25"/>
+
+                        <TextBlock Text="Date of Birth:"/>
+                        <DatePicker Name="DateOfBirth" Margin="0,5"/>
+
+                        <TextBlock Text="Gender Identity:"/>
+                        <ComboBox Name="GenderIdentity" Margin="0,5" Height="25">
+                            <ComboBoxItem Content="Female"/> 
+                            <ComboBoxItem Content="Male"/>
+                            <ComboBoxItem Content="Non-binary"/>  <!-- for O gender type in employees table -->
+                        </ComboBox>
+
+                        <TextBlock Text="Salary:"/>
+                        <TextBox Name="txtSalary" Margin="0,5" Height="25"/>
+
+                        <TextBlock Text="Branch:"/>
+                        <TextBox Name="txtBranch" Margin="0,5" Height="25"/>
+
+                        <TextBlock Text="Supervisor:"/>
+                        <TextBox Name="txtSupervisor" Margin="0,5" Height="25"/>
+
+                
+                        <!--<Button Content="Delete Employee" Name="btnDeleteEmployee" Click="BtnDeleteEmployee_Click" Background="Red" Foreground="White" Margin="0,0,0,10" Height="35"/>
+                        <Button Content="View Total Sales" Name="btnViewSales" Click="BtnViewSales_Click" Background="Blue" Foreground="White" Margin="0,0,0,10" Height="35"/>
+                        <Button Content="Update Salary" Name="btnUpdateSalary" Click="BtnUpdateSalary_Click" Background="Yellow" Foreground="Black" Height="35"/>-->
+
+                    </StackPanel>
+                </ScrollViewer>
             </Border>
 
 
-            <!-- Right Panel - Data Grid -->
+
+            <!-- Right Panel -->
             <Border Grid.Column="1" Background="White">
-                <DataGrid Name="DataGridEmployees" AutoGenerateColumns="False" SelectionMode="Single">
+               <DataGrid Name="DataGridEmployees" AutoGenerateColumns="False" SelectionMode="Single">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                         <DataGridTextColumn Header="First Name" Binding="{Binding GivenName}" Width="100"/>
@@ -69,7 +103,7 @@
                         <DataGridTextColumn Header="Branch" Binding="{Binding BranchId}" Width="100"/>
                         <DataGridTextColumn Header="Supervisor" Binding="{Binding SupervisorId}" Width="120"/>
                     </DataGrid.Columns>
-                </DataGrid>
+                </DataGrid> 
             </Border>
         </Grid>
 
