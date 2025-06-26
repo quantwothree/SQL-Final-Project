@@ -39,11 +39,11 @@
                     <TextBox Name="txtSearchName" Margin="0,5" Height="25"/>
                     <Button Content="Search" Name="btnSearchByName" Click="BtnSearchByName_Click" Margin="0,0,0,10" Height="30"/>
 
-                    <!--<TextBlock Text="Search by Branch Number:"/>
+                    <TextBlock Text="Search by Branch Number:"/>
                     <TextBox Name="txtBranchNumber" Margin="0,5" Height="25"/>
                     <Button Content="Search" Name="btnSearchByBranch" Click="BtnSearchByBranch_Click" Margin="0,0,0,10" Height="30"/>
 
-                    <TextBlock Text="Filter by Salary"/>
+                    <!--<TextBlock Text="Filter by Salary"/>
                     <TextBox Name="txtSalaryFilter" Margin="0,5" Height="25"/>
                     <Button Content="Filter" Name="btnSearchBySalary" Click="BtnSearchBySalary_Click" Margin="0,0,0,10" Height="30"/>
 

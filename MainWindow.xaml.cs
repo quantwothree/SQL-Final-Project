@@ -26,7 +26,6 @@ namespace SQL_Final_Project
             InitializeComponent();
             InitializeDatabaseConnection();
             employeeManager = new EmployeeManager(DataGridEmployees);
-
         }
 
         private void InitializeDatabaseConnection()
@@ -54,12 +53,33 @@ namespace SQL_Final_Project
             {
                 string query = "SELECT * FROM employees WHERE family_name LIKE @userSearch OR given_name LIKE @userSearch";
                 MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@userSearch", userSearch); // To pass userSearch ( the string variable) into @userSearch in the query
+                command.Parameters.AddWithValue("@userSearch", userSearch); // To replace @userSearch ( the string variable) into #userSearch in the query
                 employeeManager.LoadEmployees(command);
             }
         }
 
+        private void BtnSearchByBranch_Click(object sender, RoutedEventArgs e)
+        {
+            string userSearch = txtBranchNumber.Text;
+            bool checkIfUserSearchIsValid = int.TryParse(userSearch, out int intUserSearch);
+            if (checkIfUserSearchIsValid == false) 
+            {
+                MessageBox.Show("Invalid branch number, please enter a number: ");
+            }
+            else if (string.IsNullOrEmpty(userSearch))
+            {
+                MessageBox.Show("Please enter a branch number: ");
+            }
+            else
+            {
+                string query = "SELECT * FROM employees WHERE branch_id = @userSearch";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@userSearch", intUserSearch); 
+                employeeManager.LoadEmployees(command);
+            }
 
+
+        }
     }
 }
 

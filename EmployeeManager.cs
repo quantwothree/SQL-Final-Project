@@ -34,7 +34,7 @@ namespace SQL_Final_Project
                         SupervisorId = reader.GetInt32("supervisor_id") });
                        
                 }
-                this.dataGrid.ItemsSource = employees;
+                this.dataGrid.ItemsSource = employees; // Tell the DataGrid that 'employees list' should be its source for data 
             }
         }
 
