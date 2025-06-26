@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Reflection;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 
 
 namespace SQL_Final_Project
@@ -217,6 +218,28 @@ namespace SQL_Final_Project
             employeeManager.LoadEmployees(command);
             MessageBox.Show("Employee submitted"); 
 
+
+        }
+
+        private void BtnDeleteEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedId = 0; // To access ID later outside of IF ELSE 
+            if (DataGridEmployees.SelectedItem == null)
+            {
+                MessageBox.Show("No employee selected");
+                return;
+            }
+            else
+            {
+                var selectedEmployee = (Employee)DataGridEmployees.SelectedItem; // Make selected object an Employee
+                selectedId = selectedEmployee.Id;
+            }
+
+            string query = "DELETE FROM employees WHERE id = @id";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id", selectedId);
+            employeeManager.LoadEmployees(command);
+            MessageBox.Show("Employee deleted!"); 
 
         }
     }

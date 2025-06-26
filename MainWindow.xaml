@@ -79,9 +79,8 @@
                         <TextBlock Text="Supervisor:"/>
                         <TextBox Name="txtSupervisor" Margin="0,5" Height="25"/>
 
-                
-                        <!--<Button Content="Delete Employee" Name="btnDeleteEmployee" Click="BtnDeleteEmployee_Click" Background="Red" Foreground="White" Margin="0,0,0,10" Height="35"/>
-                        <Button Content="View Total Sales" Name="btnViewSales" Click="BtnViewSales_Click" Background="Blue" Foreground="White" Margin="0,0,0,10" Height="35"/>
+                        <Button Content="Delete Employee" Name="btnDeleteEmployee" Click="BtnDeleteEmployee_Click" Background="Red" Foreground="White" Margin="0,0,0,10" Height="35"/>
+                        <!--<Button Content="View Total Sales" Name="btnViewSales" Click="BtnViewSales_Click" Background="Blue" Foreground="White" Margin="0,0,0,10" Height="35"/>
                         <Button Content="Update Salary" Name="btnUpdateSalary" Click="BtnUpdateSalary_Click" Background="Yellow" Foreground="Black" Height="35"/>-->
 
                     </StackPanel>
@@ -92,7 +91,7 @@
 
             <!-- Right Panel -->
             <Border Grid.Column="1" Background="White">
-               <DataGrid Name="DataGridEmployees" AutoGenerateColumns="False" SelectionMode="Single">
+               <DataGrid Name="DataGridEmployees" AutoGenerateColumns="False" SelectionMode="Single"> <!-- Allow user to choose only 1 thing in UI-->
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                         <DataGridTextColumn Header="First Name" Binding="{Binding GivenName}" Width="100"/>
